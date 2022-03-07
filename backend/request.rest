@@ -1,0 +1,23 @@
+POST  http://localhost:3000/admin/register
+Content-Type: application/json
+
+{
+    "username": "nandhini",
+    "email": "nandy1305@gmail.com",
+    "password":"harilovenandhini"
+}
+
+###
+
+POST  http://localhost:3000/admin/login
+Content-Type: application/json
+
+{
+    "username": "nandhini",
+    "email": "nandy1305@gmail.com",
+    "password":"harilovenandhini"
+}
+
+
+###
+GET http://localhost:3000/admin
