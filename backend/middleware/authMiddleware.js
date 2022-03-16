@@ -1,8 +1,21 @@
 const jwt = require('jsonwebtoken')
 const asyncHandler = require('express-async-handler')
-const Admin = require('../models/userModel')
+const Admin = require('../models/adminModel')
+const Staff = require('../models/staffModel')
+const Alumini=require('../models/userModel')
 
 const protect = asyncHandler(async (req, res, next) => {
+  let trial
+  if(req.params.id==='Admin'){
+    trial=Admin
+  }
+  else if(req.params.id==='Staff'){
+    trial = Staff
+  }
+  else if(req.params.id === 'Alumini'){
+    trial = Alumini
+  }
+
   let token
 
   if (
@@ -14,10 +27,10 @@ const protect = asyncHandler(async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1]
 
       // Verify token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET)
+      const decoded = jwt.verify(token, 'SECRET')
 
       // Get user from the token
-      req.user = await Admin.findById(decoded.id).select('-password')
+      req.user = await trial.findById(decoded.id).select('-password')
 
       next()
     } catch (error) {

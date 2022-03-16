@@ -1,23 +1,42 @@
-POST  http://localhost:3000/admin/register
+POST  http://localhost:3000/register/Alumini
 Content-Type: application/json
 
 {
-    "username": "nandhini",
-    "email": "nandy1305@gmail.com",
-    "password":"harilovenandhini"
+    "username": "sushmitha",
+    "email": "susmithasen@gmail.com",
+    "password":"paithiyakari"
 }
 
 ###
 
-POST  http://localhost:3000/admin/login
+POST  http://localhost:3000/login/Alumini
 Content-Type: application/json
 
 {
-    "username": "nandhini",
-    "email": "nandy1305@gmail.com",
-    "password":"harilovenandhini"
+    "username": "sushmitha",
+    "email": "susmithasen@gmail.com",
+    "password":"paithiyakari"
 }
 
 
 ###
-GET http://localhost:3000/admin
+GET http://localhost:3000/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjZlNzI2YzAyNTc3MTAyYzU1MDRiYSIsImlhdCI6MTY0Njk4NTk3MSwiZXhwIjoxNjQ5NTc3OTcxfQ.wU0IAgUf95nI17wPcVvwJYki5FUG2IOMqR_4-_X0-Ig
+
+
+###Admin request
+GET http://localhost:3000/Admin
+
+
+
+###
+GET  http://localhost:3000/Admin/query?id=Alumini
+
+###
+POST http://localhost:3000/Admin/updateProfile/Alumini 
+Content-Type: application/json
+
+{
+    "email":"susmithasen@gmail.com",
+    "department":"B.Sc IT"
+}

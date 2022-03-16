@@ -15,8 +15,13 @@ db.on("error", (error) => console.log(error));
 db.once("open", () => console.log("connected to DB"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-const adminRouter = require("./routes/admin");
-app.use("/admin", adminRouter);
+const userRouter = require("./routes/Users");
+const Dashboard = require("./routes/Dashboard")
+app.use("/Admin", Dashboard)
+app.use("/", userRouter);
+
+
+
 
 app.use(errorhandler);
 

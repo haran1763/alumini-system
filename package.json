@@ -1,7 +1,6 @@
 {
   "name": "alumini-system",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "nodemon backend/server.js"
@@ -18,5 +17,6 @@
   "devDependencies": {
     "dotenv": "^16.0.0",
     "nodemon": "^2.0.15"
-  }
+  },
+  "description": ""
 }
