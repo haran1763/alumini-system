@@ -8,13 +8,13 @@ function Sidebar() {
     <div className={Styles.right_container}>
       <h1>Alumini Management System</h1>
       <div className={Styles.Button}>
-        <Link className={Styles.Link} to="/Register/Admin">
+        <Link className={Styles.Link} to="/Admin">
           Admin
         </Link>
-        <Link className={Styles.Link} to="/Register/Staff">
+        <Link className={Styles.Link} to="/Staff">
           Staff
         </Link>
-        <Link className={Styles.Link} to="/Register/Alumini">
+        <Link className={Styles.Link} to="/Alumini">
           Alumini
         </Link>
       </div>

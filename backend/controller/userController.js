@@ -19,19 +19,20 @@ const registerAdmin = asyncHandler(async (req, res, next) => {
     trial = Event;
   }
 
-  const { name, email, password } = req.body;
+  const { name, email, password, batch, department } = req.body;
+
   if (!name || !password) {
     res.status(400);
     throw new Error("Please add required the fields");
   }
 
   //finds whether the Admin already exist
-  const userExists = await trial.findOne({ email });
+  // const userExists = await trial.findOne({ email });
 
-  if (userExists) {
-    res.status(400);
-    throw new Error("Data already exist, Please Login");
-  }
+  // if (userExists) {
+  //   res.status(400);
+  //   throw new Error("Data already exist, Please Login");
+  // }
   //hashing password
   const salt = await bcrypt.genSalt(20);
   const hashedPassword = await bcrypt.hash(password, salt);
@@ -39,6 +40,8 @@ const registerAdmin = asyncHandler(async (req, res, next) => {
   const user = await trial.create({
     name,
     email,
+    batch,
+    department,
     password: hashedPassword,
   });
 
