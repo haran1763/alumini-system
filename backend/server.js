@@ -20,7 +20,7 @@ db.once("open", () => console.log("connected to DB"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 const userRouter = require("./routes/Users");
-app.use("/register", userRouter);
+app.use("/", userRouter);
 const Dashboard = require("./routes/Dashboard");
 app.use("/Admin", Dashboard);
 

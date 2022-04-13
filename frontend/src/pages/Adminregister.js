@@ -1,21 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { register, reset } from "../features/auth/authSlice";
 import Styles from "../Styles.module.css";
-import axios from "axios";
+import Button from "@mui/material/Button";
+import { toast } from "react-toastify";
 
 function AdminRegister() {
   const [RegisterData, setRegisterData] = useState({
-    name: "",
+    emailR: "",
     department: "",
     batch: "",
     password: "",
     email: "",
-    password: "",
+    designation: "",
     passwordR: "",
   });
-  const { name, department, batch, password, email, passwordR } = RegisterData;
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  const { emailR, department, password, email, passwordR, designation } =
+    RegisterData;
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    dispatch(reset);
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
+
   const onChange = (e) => {
     setRegisterData((prevState) => ({
       ...prevState,
@@ -23,54 +41,68 @@ function AdminRegister() {
     }));
   };
 
-  const Submit = async (e) => {};
+  const SubmitR = async (e) => {
+    e.preventDefault();
+    const userData = {
+      emailR,
+      passwordR,
+      department,
+      designation,
+    };
+    dispatch(register(userData, "Admin"));
+  };
+
+  const Submit = () => {};
 
   return (
     <>
       <div className={Styles.Login}>
         <h1>Register</h1>
-        <form onSubmit={Submit} className={Styles.form}>
-          <span>Name:</span>
+        <form onSubmit={SubmitR} className={Styles.form}>
+          <span>Email:</span>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={name}
+            id="EmailR"
+            name="emailR"
+            value={emailR}
             onChange={onChange}
-            placeholder="Enter your Name"
+            placeholder="Enter your Email"
           />
-          <span>Batch:</span>
+          <span>Designation:</span>
           <input
             type="text"
-            id="batch"
-            name="batch"
-            value={batch}
+            id="designation"
+            name="designation"
+            value={designation}
             onChange={onChange}
-            placeholder="Enter your batch"
+            placeholder="Enter your designation"
           />
           <span>Department:</span>
           <input
             type="text"
             id="Department"
-            name="Department"
+            name="department"
             value={department}
             onChange={onChange}
             placeholder="Enter your department"
           />
           <span>Password:</span>
           <input
-            type="text"
-            id="password"
-            name="passwprd"
-            value={password}
+            type="password"
+            id="passwordR"
+            name="passwordR"
+            value={passwordR}
             onChange={onChange}
             placeholder="Enter your password"
           />
+          <Button type="submit" variant="contained" onSubmit={SubmitR}>
+            Register
+          </Button>
         </form>
       </div>
       <div className={Styles.Login}>
         <h1>Login</h1>
-        <form onclick={Submit} className={Styles.form}>
+        <form onSubmit={Submit} className={Styles.form}>
           <span>Email:</span>
           <input
             type="text"
@@ -83,12 +115,15 @@ function AdminRegister() {
           <span>Password:</span>
           <input
             type="text"
-            id="passeordR"
-            name="passwordR"
-            value={passwordR}
+            id="passeord"
+            name="password"
+            value={password}
             onChange={onChange}
             placeholder="Enter your password"
           />
+          <Button type="submit" variant="contained" onSubmit={Submit}>
+            Login
+          </Button>
         </form>
       </div>
     </>

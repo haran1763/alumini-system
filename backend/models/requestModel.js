@@ -1,19 +1,27 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const requestSchema = mongoose.Schema({
-    name:{
-        type:String,
-    },
-    email:{
-        type:String
-    },
-    department:{
-        type:String
-    },
-    passedout:{
-        type:Number
-    }
-})
+  name: {
+    type: String,
+  },
+  collegeID: {
+    type: String,
+  },
+  password: {
+    type: String,
+  },
+  email: {
+    type: String,
+  },
+  department: {
+    type: String,
+  },
+  passedOut: {
+    type: Number,
+  },
+  designation: {
+    type: String,
+  },
+});
 
-
-module.exports = mongoose.model('Request',requestSchema);
+module.exports = mongoose.model("Request", requestSchema);
