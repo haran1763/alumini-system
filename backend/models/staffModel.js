@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const staffSchema = mongoose.Schema(
+const staffSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -13,6 +13,9 @@ const staffSchema = mongoose.Schema(
       type: String,
       //   required: [true, "please add a password"],
     },
+    collegeID: {
+      type: String,
+    },
     photoURL: {
       type: String,
     },
@@ -21,6 +24,9 @@ const staffSchema = mongoose.Schema(
     },
     dateofbirth: {
       type: Number,
+    },
+    department: {
+      type: String,
     },
     designation: {
       type: String,
@@ -37,4 +43,4 @@ const staffSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Staffs", staffSchema);
+module.exports = mongoose.model("Staff", staffSchema);

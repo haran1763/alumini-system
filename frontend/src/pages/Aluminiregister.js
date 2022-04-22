@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Styles from "../Styles.module.css";
 import Button from "@mui/material/Button";
+import { auth } from "../features/register";
+import { useStateValue } from "../app/Stateprovider";
 
 function AluminiRegister() {
+  const [{ user }, dispatch] = useStateValue();
   const [RegisterData, setRegisterData] = useState({
     collegeID: "",
     department: "",
@@ -31,14 +34,30 @@ function AluminiRegister() {
     }));
   };
 
-  const SubmitR = async (e) => {};
-  const Submit = async (e) => {};
+  const SubmitR = async (e) => {
+    e.preventDefault();
+    const userData = {
+      emailR,
+      collegeID,
+      department,
+      passwordR,
+    };
+    auth.register(userData, "Alumini", dispatch);
+  };
+  const Submit = async (e) => {
+    e.preventDefault();
+    const userData = {
+      email,
+      password,
+    };
+    auth.login(userData, "Alumini", dispatch);
+  };
 
   return (
     <>
       <div className={Styles.Login}>
         <h1>Register</h1>
-        <form onSubmit={Submit} className={Styles.form}>
+        <form onSubmit={SubmitR} className={Styles.form}>
           <span>Email:</span>
           <input
             type="text"
@@ -51,8 +70,8 @@ function AluminiRegister() {
           <span>College ID:</span>
           <input
             type="text"
-            id="CollegeID"
-            name="CollegeID"
+            id="collegeID"
+            name="collegeID"
             value={collegeID}
             onChange={onChange}
             placeholder="Enter your CollegeID"
@@ -60,8 +79,8 @@ function AluminiRegister() {
           <span>Department:</span>
           <input
             type="text"
-            id="Department"
-            name="Department"
+            id="department"
+            name="department"
             value={department}
             onChange={onChange}
             placeholder="Enter your department"
@@ -77,10 +96,10 @@ function AluminiRegister() {
           />
           <span>Password:</span>
           <input
-            type="text"
-            id="password"
-            name="passwprd"
-            value={password}
+            type="password"
+            id="passwordR"
+            name="passwordR"
+            value={passwordR}
             onChange={onChange}
             placeholder="Enter your password"
           />
@@ -96,7 +115,7 @@ function AluminiRegister() {
         <form onSubmit={Submit} className={Styles.form}>
           <span>Email:</span>
           <input
-            type="text"
+            type="email"
             id="email"
             name="email"
             value={email}
@@ -105,10 +124,10 @@ function AluminiRegister() {
           />
           <span>Password:</span>
           <input
-            type="text"
-            id="passwordR"
-            name="passwordR"
-            value={passwordR}
+            type="password"
+            id="password"
+            name="password"
+            value={password}
             onChange={onChange}
             placeholder="Enter your password"
           />

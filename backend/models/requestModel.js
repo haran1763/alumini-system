@@ -19,9 +19,6 @@ const requestSchema = mongoose.Schema({
   passedOut: {
     type: Number,
   },
-  designation: {
-    type: String,
-  },
 });
 
 module.exports = mongoose.model("Request", requestSchema);

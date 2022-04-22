@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Styles from "../Styles.module.css";
 import Button from "@mui/material/Button";
-import { useDispatch, useSelector } from "react-redux";
+import { useStateValue } from "../app/Stateprovider";
+import { auth } from "../features/register";
 
 function StaffRegister() {
+  const [{}, dispatch] = useStateValue();
   const [RegisterData, setRegisterData] = useState({
     collegeID: "",
     department: "",
@@ -25,11 +27,6 @@ function StaffRegister() {
   } = RegisterData;
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
 
   useEffect(() => {}, []);
 
@@ -40,14 +37,31 @@ function StaffRegister() {
     }));
   };
 
-  const SubmitR = async (e) => {};
-  const Submit = async (e) => {};
+  const SubmitR = async (e) => {
+    e.preventDefault();
+    const userData = {
+      emailR,
+      collegeID,
+      department,
+      designation,
+      passwordR,
+    };
+    auth.register(userData, "Staff", dispatch);
+  };
+  const Submit = async (e) => {
+    e.preventDefault();
+    const userData = {
+      email,
+      password,
+    };
+    auth.login(userData, "Staff", dispatch);
+  };
 
   return (
     <>
       <div className={Styles.Login}>
         <h1>Register</h1>
-        <form onSubmit={Submit} className={Styles.form}>
+        <form onSubmit={SubmitR} className={Styles.form}>
           <span>Email:</span>
           <input
             type="text"
@@ -60,8 +74,8 @@ function StaffRegister() {
           <span>College ID:</span>
           <input
             type="text"
-            id="CollegeID"
-            name="CollegeID"
+            id="collegeID"
+            name="collegeID"
             value={collegeID}
             onChange={onChange}
             placeholder="Enter your CollegeID"
@@ -69,8 +83,8 @@ function StaffRegister() {
           <span>Department:</span>
           <input
             type="text"
-            id="Department"
-            name="Department"
+            id="department"
+            name="department"
             value={department}
             onChange={onChange}
             placeholder="Enter your department"
@@ -86,10 +100,10 @@ function StaffRegister() {
           />
           <span>Password:</span>
           <input
-            type="text"
-            id="password"
-            name="passwprd"
-            value={password}
+            type="password"
+            id="passwordR"
+            name="passwordR"
+            value={passwordR}
             onChange={onChange}
             placeholder="Enter your password"
           />
@@ -112,10 +126,10 @@ function StaffRegister() {
           />
           <span>Password:</span>
           <input
-            type="text"
-            id="passwordR"
-            name="passwordR"
-            value={passwordR}
+            type="password"
+            id="password"
+            name="password"
+            value={password}
             onChange={onChange}
             placeholder="Enter your password"
           />

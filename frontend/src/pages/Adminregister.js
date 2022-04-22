@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { register, reset } from "../features/auth/authSlice";
 import Styles from "../Styles.module.css";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
+import { auth } from "../features/register";
+import { useStateValue } from "../app/Stateprovider";
 
 function AdminRegister() {
+  const [{}, dispatch] = useStateValue();
+
   const [RegisterData, setRegisterData] = useState({
     emailR: "",
     department: "",
@@ -16,23 +18,9 @@ function AdminRegister() {
     designation: "",
     passwordR: "",
   });
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
 
   const { emailR, department, password, email, passwordR, designation } =
     RegisterData;
-
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-
-    dispatch(reset);
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setRegisterData((prevState) => ({
@@ -49,10 +37,17 @@ function AdminRegister() {
       department,
       designation,
     };
-    dispatch(register(userData, "Admin"));
+    auth.register(userData, "Admin", dispatch);
   };
 
-  const Submit = () => {};
+  const Submit = (e) => {
+    e.preventDefault();
+    const userData = {
+      email,
+      password,
+    };
+    auth.login(userData, "Admin", dispatch);
+  };
 
   return (
     <>
@@ -114,8 +109,8 @@ function AdminRegister() {
           />
           <span>Password:</span>
           <input
-            type="text"
-            id="passeord"
+            type="password"
+            id="password"
             name="password"
             value={password}
             onChange={onChange}
