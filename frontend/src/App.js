@@ -10,10 +10,10 @@ import AluminiRegister from "./pages/Aluminiregister";
 import StaffRegister from "./pages/Staffregister";
 import Dashboard from "./pages/Dashboard";
 import { useStateValue } from "./app/Stateprovider";
+import Eventsform from "./pages/Eventsform";
 
 function App() {
-  const [{ user }] = useStateValue();
-
+  const user = true;
   return (
     <div className={Styles.App}>
       <div className={Styles.container}>
@@ -33,13 +33,13 @@ function App() {
           <Router>
             <Routes>
               <Route path="/:id" element={<Dashboard />} />
-              {/* <Route path="/Alumini" element={<AluminiRegister />} /> */}
+              {/* <Route path="/Admin/form" element={<Eventsform />} /> */}
               {/* <Route path="/" element={<StaffRegister />} /> */}
               {/* <Route path="/" element={<Dashboard />} /> */}
             </Routes>
           </Router>
         )}
-        <ToastContainer />
+        <ToastContainer theme="coloured" />
       </div>
     </div>
   );

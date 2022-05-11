@@ -18,9 +18,6 @@ const adminSchema = new mongoose.Schema({
     type: String,
     //   required: [true, "please add a password"],
   },
-  photoURL: {
-    type: String,
-  },
 });
 
 module.exports = mongoose.model("Admin", adminSchema);

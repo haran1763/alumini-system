@@ -3,6 +3,7 @@ header{
     align-items: center;
     color: white;
     width: 95vw;
+    border-bottom:0.2vw solid grey ;
 }
 .image{
     display: flex;
@@ -27,4 +28,9 @@ header{
 
 .Dashboard{
     color: grey;
+}
+
+
+.bottom{
+    display: flex;
 }

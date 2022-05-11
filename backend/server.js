@@ -22,7 +22,7 @@ app.use(express.json());
 const userRouter = require("./routes/Users");
 app.use("/", userRouter);
 const Dashboard = require("./routes/Dashboard");
-app.use("/Admin", Dashboard);
+app.use("/details", Dashboard);
 
 app.use(errorhandler);
 

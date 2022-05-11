@@ -2,23 +2,23 @@ POST http://localhost:5000/register/Admin
 Content-Type: application/json
 
 {
-    "name":"hari",
-    "email":"sundarmks@gmail.com",
-    "password":"haran1763"
+    "emailR":"sundar@gmail.com",
+    "passwordR":"sundar",
+    "designation":"lecture",
+    "department":"cse"
 }
 
 ###
-POST http://localhost:3000/login/Admin
+POST http://localhost:5000/login/Admin
 Content-Type: application/json
 
 {
-    "username":"hari",
-    "email":"haran1763@gmail.com",
-    "password":"haran1763"
+    "email":"sundar@gmail.com",
+    "password":"sundar"
 }
 
 
 ###
-GET http://localhost:3000/Admin/Admin?id=Admin
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzQ5OGZiYmU2M2IwZTYyZmYzZGU0YSIsImlhdCI6MTY0NzY5ODIwMCwiZXhwIjoxNjUwMjkwMjAwfQ.JAV7zoWTOiKDMIc8DyL09SFw_FY-HQQSp61D8SGBfC4
+GET http://localhost:5000/details/Admin?id=Admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmUwZDQ5MjAxNzRmMDJmMWZhZTZlMCIsImlhdCI6MTY1MTM3OTc2OCwiZXhwIjoxNjUzOTcxNzY4fQ.T5KDaVmll_he4xCWKzy1l2CfqDszVZS8oWZ0FQQrzCg
 

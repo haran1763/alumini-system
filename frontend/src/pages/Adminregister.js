@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Styles from "../Styles.module.css";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
 import { auth } from "../features/register";
 import { useStateValue } from "../app/Stateprovider";
+import Spinner from "../components/Spinner";
 
 function AdminRegister() {
-  const [{}, dispatch] = useStateValue();
-
+  const [{ isLoading, message, isError }, dispatch] = useStateValue();
   const [RegisterData, setRegisterData] = useState({
     emailR: "",
     department: "",
@@ -21,6 +20,13 @@ function AdminRegister() {
 
   const { emailR, department, password, email, passwordR, designation } =
     RegisterData;
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+      toast.error(message);
+    }
+  }, [isError]);
 
   const onChange = (e) => {
     setRegisterData((prevState) => ({
@@ -48,6 +54,10 @@ function AdminRegister() {
     };
     auth.login(userData, "Admin", dispatch);
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>

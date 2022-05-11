@@ -1,0 +1,54 @@
+.Recents{
+    border:0 0.3vh solid ghostwhite;
+    height: 87vh;
+    width:13vw;
+    box-shadow: 5px 0px rgb(124, 134, 179,0.4);
+    background-color: #192B3F;
+    background: linear-gradient(to right ,rgba(31, 50, 72, 0.7),rgba(30, 65, 106, 0.3));
+    backdrop-filter: blur(2vw);
+
+}
+.content{
+    height: 9vh;
+    border-bottom: 0.1vh solid rgb(210, 234, 250);
+    box-shadow: inset 3px 2px 6px rgba(30, 107, 169, 0.25);
+}
+.paragraph{
+    display: flex;
+    align-items: center;
+    padding-bottom:0.5vh; 
+}
+.paragraph>p{
+    margin-top: 0.4vh;
+}
+.paragraph>Button{
+    margin-left: 10%;
+    height: 4vh;
+}
+
+
+/* events */
+.Event{
+    margin-left: 2vh;
+    background-color: #192B3F;
+    width: 70vw;
+    height: 86vh ;
+}
+.header{
+    display: flex;
+    align-items: center;
+}
+.header>h1{
+    flex: 0.97;
+}
+
+/* form */
+.right{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 70vw;
+    height: 86vh ;  
+}

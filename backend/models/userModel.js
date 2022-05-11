@@ -13,9 +13,6 @@ const aluminiSchema = new mongoose.Schema(
       type: String,
       //   required: [true, "please add a password"],
     },
-    photoURL: {
-      type: String,
-    },
     department: {
       type: String,
     },

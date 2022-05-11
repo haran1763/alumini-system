@@ -4,9 +4,11 @@ import Styles from "../Styles.module.css";
 import Button from "@mui/material/Button";
 import { useStateValue } from "../app/Stateprovider";
 import { auth } from "../features/register";
+import Spinner from "../components/Spinner";
 
 function StaffRegister() {
   const [{}, dispatch] = useStateValue();
+  const [isLoading, setLoading] = useState(false);
   const [RegisterData, setRegisterData] = useState({
     collegeID: "",
     department: "",
@@ -26,10 +28,6 @@ function StaffRegister() {
     passwordR,
   } = RegisterData;
 
-  const navigate = useNavigate();
-
-  useEffect(() => {}, []);
-
   const onChange = (e) => {
     setRegisterData((prevState) => ({
       ...prevState,
@@ -46,6 +44,7 @@ function StaffRegister() {
       designation,
       passwordR,
     };
+    setLoading(true);
     auth.register(userData, "Staff", dispatch);
   };
   const Submit = async (e) => {
@@ -54,8 +53,13 @@ function StaffRegister() {
       email,
       password,
     };
+    setLoading(true);
     auth.login(userData, "Staff", dispatch);
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>

@@ -16,9 +16,6 @@ const staffSchema = new mongoose.Schema(
     collegeID: {
       type: String,
     },
-    photoURL: {
-      type: String,
-    },
     qualification: {
       type: String,
     },

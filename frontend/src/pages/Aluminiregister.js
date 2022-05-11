@@ -4,9 +4,12 @@ import Styles from "../Styles.module.css";
 import Button from "@mui/material/Button";
 import { auth } from "../features/register";
 import { useStateValue } from "../app/Stateprovider";
+import Spinner from "../components/Spinner";
 
 function AluminiRegister() {
   const [{ user }, dispatch] = useStateValue();
+  const [isLoading, setLoading] = useState(false);
+
   const [RegisterData, setRegisterData] = useState({
     collegeID: "",
     department: "",
@@ -42,6 +45,7 @@ function AluminiRegister() {
       department,
       passwordR,
     };
+    setLoading(true);
     auth.register(userData, "Alumini", dispatch);
   };
   const Submit = async (e) => {
@@ -50,8 +54,13 @@ function AluminiRegister() {
       email,
       password,
     };
+    setLoading(true);
     auth.login(userData, "Alumini", dispatch);
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>

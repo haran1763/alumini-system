@@ -1,17 +1,11 @@
-const mongoose = require('mongoose')
-
+const mongoose = require("mongoose");
 
 const eventSchema = mongoose.Schema({
-    _id:{
-        type:Number,
-        default:this.countDocuments+1
-    },
-    Event:String,
-    Date:Date,
-    place:String,
-    Description:String
-    
-})
+  event: String,
+  date: String,
+  venue: String,
+  guest: String,
+  description: String,
+});
 
-
-module.exports = mongoose.model('Events',eventSchema)
+module.exports = mongoose.model("Events", eventSchema);

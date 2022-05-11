@@ -1,8 +1,10 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Events from "../components/Events";
 import Recents from "../components/Recents";
 import design from "../Dashboard.module.css";
+import { details } from "../features/details";
+import { useStateValue } from "../app/Stateprovider";
 
 function Admindashboard() {
   return (
@@ -20,8 +22,7 @@ function Admindashboard() {
           <Button>Logout</Button>
         </div>
       </header>
-      <hr />
-      <div>
+      <div className={design.bottom}>
         <Recents />
         <Events />
       </div>
